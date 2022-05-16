@@ -23,7 +23,6 @@ fun main() {
 
     // Output
     println("\nDiâmetro: $diametro")
-    println("Raio: $raioFormatado")
     println("Área: $areaFormatado")
     println("Perímetro: $perimetroFormatado")
 
