@@ -11,7 +11,6 @@ fun main() {
 
     // Cálculo do raio:
     var raio = diametro / 2
-    var raioFormatado = "%.2f".format(raio)
 
     // Cálculo da Área: π * r^2
     var area = PI * (raio.pow(2))
