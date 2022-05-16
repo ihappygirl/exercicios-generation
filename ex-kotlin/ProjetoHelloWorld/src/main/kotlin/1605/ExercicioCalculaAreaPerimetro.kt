@@ -22,7 +22,7 @@ fun main() {
     var perimetroFormatado = "%.2f".format(perimetro)
 
     // Output
-    println("Diâmetro: $diametro")
+    println("\nDiâmetro: $diametro")
     println("Raio: $raioFormatado")
     println("Área: $areaFormatado")
     println("Perímetro: $perimetroFormatado")
