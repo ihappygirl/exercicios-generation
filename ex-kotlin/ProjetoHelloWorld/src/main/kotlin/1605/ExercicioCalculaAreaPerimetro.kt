@@ -26,5 +26,4 @@ fun main() {
     println("Perímetro: $perimetroFormatado")
 
 
-
 }
