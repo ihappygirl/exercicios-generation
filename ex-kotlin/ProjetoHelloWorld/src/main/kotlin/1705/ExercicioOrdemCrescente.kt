@@ -16,7 +16,6 @@ fun main() {
     var c = 0
 
     if ((num1 < num2) && (num1 < num3)) {
-
         // caso o menor seja o num1
         a = num1
 
@@ -29,7 +28,6 @@ fun main() {
         }
 
     } else if ((num2 < num3) && (num2 < num1)) {
-
         // caso o menor seja o num2
         a = num2
 
@@ -42,7 +40,6 @@ fun main() {
         }
 
     } else if ((num3 < num1) && (num3 < num2)) {
-
         // caso o menor seja o num3
         a = num3
 
@@ -55,7 +52,6 @@ fun main() {
         }
 
     } else{
-
         // caso haja numeros iguais (num1 = num2, num2 = num3 ou num3 = num1)
         if((num1 == num2) && num1 < num3){
             a = num1
