@@ -17,9 +17,7 @@ fun main(){
 
         if (idade < 21 && idade != -99){
             menos21++
-        }
-
-        if (idade > 50){
+        } else if(idade > 50){
             mais50++
         }
 
