@@ -102,7 +102,7 @@ fun editarProd(listaProdutos:MutableList<String>):MutableList<String>{
 
 fun mostrarTodosProdutos(listaProdutos:MutableList<String>): MutableList<String> {
     if (listaProdutos.isEmpty()){
-        println("Não existem produtos cadastrados para você poder editar.")
+        println("Não existem produtos cadastrados.")
     } else {
         println("****** Produtos Cadastrados: ******")
         listaProdutos.forEach{println(it)}
