@@ -23,7 +23,7 @@ fun main() {
         println("4- Mostrar Todos os Produtos")
         println("********* CONTROLE DE ESTOQUE *********\n")
 
-        print("Digite o número correspondente a operação que você quer fazer: ")
+        print("Digite o número correspondente a ação que você quer fazer: ")
         val opcao = readln().toInt()
 
         when(opcao){
