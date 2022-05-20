@@ -27,4 +27,23 @@ fun main() {
         "-", "subtração" -> print("Você digitou - ou subtração!")
     }*/
 
+
+    /*val codigo = mutableListOf(1,2,3,4)
+    val nome = mutableListOf("Pastel", "Coxinha", "Marmita", "Suco")
+
+    val tam = codigo.size - 1
+    // codigo.size -1 pq o tamanho é calculado a partir de 1 e não de 0
+
+    for (i in 0..tam){
+        print("${codigo[i]} - ")
+        print("${nome[i]} \n")
+    }
+
+    */
+
+
+
+
+
+
 }

@@ -79,6 +79,7 @@ fun editarProd(listaProdutos:MutableList<String>):MutableList<String>{
         println("Não existem produtos cadastrados para você poder editar.")
     } else {
         while(true){
+
             print("Digite um produto para editar: ")
             val nomeProd = readln()
 
