@@ -1,6 +1,6 @@
 fun main() {
 
-    // Exercicio Calculadora
+    // Exercicio `objetokotlin`.Calculadora
     var sair: String
 
     do {
