@@ -3,11 +3,13 @@ package animalpolimorf
 class Cavalo(nome: String, idade: Int) :AnimalPoli(nome, idade) {
 
     override fun emitirSom() {
-        println("Emitindo sons de cavalo.")
+        super.emitirSom()
+        println("HIHIHIHIHIHIIIIIIIII")
     }
 
-    fun correrCavalo(){
-        println("Correndo igual a um cavalo.")
+    override fun correr() {
+        super.correr()
+        println("Igual a um cavalo.")
     }
 
 }

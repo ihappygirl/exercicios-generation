@@ -3,7 +3,8 @@ package animalpolimorf
 class Preguica(nome: String, idade: Int) :AnimalPoli(nome, idade) {
 
     override fun emitirSom() {
-        println("Emitindo sons de preguiça.")
+        super.emitirSom()
+        println("..........")
     }
 
     fun subirArvores(){
