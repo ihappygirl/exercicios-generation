@@ -7,8 +7,12 @@ class Mayara
      override var cod: Int,
      override var bonus: Double,
      override var pisoSal: Double,
-     override var sal: Double
+     override var sal: Double, //var pastel:String
 ) : PessoaFisica, FuncInterface {
+
+    /*fun mostrarPastel(){
+        println("$pastel")
+    }*/
 
     override fun andar() {
         println("Andando como Mayara")
