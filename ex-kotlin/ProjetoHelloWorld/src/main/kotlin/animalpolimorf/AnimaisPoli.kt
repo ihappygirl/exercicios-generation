@@ -1,4 +1,4 @@
-package animalpolimorfismo
+package animalpolimorf
 
 fun main(){
 
@@ -36,7 +36,7 @@ fun main(){
         5
     )
 
-    // Invocar o método que emite o som dos 3
+    // Invocar o método que emite o som dos 3 animais
     cachorro.emitirSom()
     cavalo.emitirSom()
     preguica.emitirSom()

@@ -1,4 +1,4 @@
-package animalpolimorfismo
+package animalpolimorf
 
 class Preguica(nome: String, idade: Int) :AnimalPoli(nome, idade) {
 

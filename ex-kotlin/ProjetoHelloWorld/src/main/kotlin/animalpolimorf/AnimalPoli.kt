@@ -1,4 +1,4 @@
-package animalpolimorfismo
+package animalpolimorf
 
 open class AnimalPoli (var nome:String, var idade:Int) {
 

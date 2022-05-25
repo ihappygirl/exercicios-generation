@@ -1,4 +1,4 @@
-package animalpolimorfismo
+package animalpolimorf
 
 class Cachorro(nome: String, idade: Int) :AnimalPoli(nome, idade) {
 
