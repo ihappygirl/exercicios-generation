@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="CalcTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2022-05-26T15:06:43" hostname="MAYARA-BISPO" time="0.043">
+  <properties/>
+  <testcase name="multiplicacaoTest()" classname="CalcTest" time="0.028"/>
+  <testcase name="divisaoTest()" classname="CalcTest" time="0.001"/>
+  <testcase name="radiciacaoTest()" classname="CalcTest" time="0.001"/>
+  <testcase name="subtracaoTest()" classname="CalcTest" time="0.001"/>
+  <testcase name="potenciaTest()" classname="CalcTest" time="0.001"/>
+  <testcase name="somaTest()" classname="CalcTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -9,7 +9,7 @@ internal class ClienteCompraTest {
     * TESTE UNITÁRIOS
     *
     * @Teste - indica que a função abaixo será um teste unitário.
-    * Asserts - verifica se o método retorna o valor esperado.
+    * Asserts -  Vão verificar o que o método precisa retornar para o teste ser validado.
     *
     * */
 
