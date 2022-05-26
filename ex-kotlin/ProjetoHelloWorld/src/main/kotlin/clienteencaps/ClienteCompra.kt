@@ -47,4 +47,12 @@ class ClienteCompra (private var nome: String) {
         }
     }
 
+    fun totalItens():Int{
+        return listaCompras.size
+    }
+
+    fun taNaLista(item:String):Boolean{
+        return listaCompras.contains(item)
+    }
+
 }
