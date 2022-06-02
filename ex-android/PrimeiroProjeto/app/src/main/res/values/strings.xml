@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Primeiro Projeto</string>
+    <string name="feliz_aniversario_gui">Feliz Aniversário, Gui!</string>
+    <string name="de_mayara">De: Mayara</string>
+    <string name="imagem">imagem</string>
+    <string name="imagembg">imagemBg</string>
+</resources>
