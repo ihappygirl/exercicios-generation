@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00031C">
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="295dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="104dp"
+        android:autofillHints=""
+        android:background="#F0FFFFFF"
+        android:ems="10"
+        android:hint="@string/nome"
+        android:inputType="textPersonName"
+        android:paddingHorizontal="12dp"
+        android:textColorHint="#546E7A"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName2"
+        android:layout_width="295dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="24dp"
+        android:background="#F0FFFFFF"
+        android:ems="10"
+        android:hint="@string/descri_o"
+        android:inputType="textPersonName"
+        android:paddingHorizontal="12dp"
+        android:textColorHint="#546E7A"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName3"
+        android:layout_width="295dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="24dp"
+        android:background="#F0FFFFFF"
+        android:ems="10"
+        android:hint="@string/respons_vel"
+        android:inputType="textPersonName"
+        android:paddingHorizontal="12dp"
+        android:textColorHint="#546E7A"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName4"
+        android:layout_width="295dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="24dp"
+        android:background="#F0FFFFFF"
+        android:ems="10"
+        android:hint="@string/data"
+        android:inputType="textPersonName"
+        android:paddingHorizontal="12dp"
+        android:textColorHint="#546E7A"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3"
+        android:autofillHints="" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="292dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/em_andamento"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="260dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="#FF9800"
+        android:text="@string/cadastrar_se"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner2"
+        app:rippleColor="#ffffff"
+        tools:ignore="TextContrastCheck" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="293dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#FF8F00"
+        android:contentDescription="@string/curso"
+        android:pointerIcon="arrow"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

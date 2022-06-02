@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Estudos Layout</string>
+    <string name="bem_vinde_ao_seu_futuro">Bem-vinde ao seu futuro!</string>
+    <string name="e_mail">E-mail</string>
+    <string name="senha">Senha</string>
+    <string name="entrar">ENTRAR</string>
+    <string name="nome">Nome</string>
+    <string name="cadastro">Cadastro de Aluno</string>
+    <string name="descri_o">Descrição</string>
+    <string name="respons_vel">Responsável</string>
+    <string name="data">Data</string>
+    <string name="imagem">imagem</string>
+    <string name="cadastrar_se">CADASTRAR-SE</string>
+    <string name="em_andamento">Em andamento</string>
+    <string name="curso">Curso</string>
+</resources>
