@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#0E0E0E"
     tools:context=".MainActivity">
 
     <TextView
@@ -12,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/use_os_bot_es_abaixo_para_girar_os_dados_d6_d12_ou_d20"
+        android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/row1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,6 +42,7 @@
             android:paddingHorizontal="6dp"
             android:text="@string/_1"
             android:textAlignment="center"
+            android:textColor="@color/white"
             android:textStyle="bold"
             android:translationY="50dp" />
 
@@ -60,10 +63,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="#D32F2F"
+            android:backgroundTint="@color/teal_200"
             android:text="@string/d6"
             android:textColor="@color/white"
-            android:translationY="60dp" />
+            android:translationY="60dp"
+            tools:ignore="TextContrastCheck" />
 
     </LinearLayout>
 
@@ -86,6 +90,7 @@
             android:layout_weight="1"
             android:text="@string/_1"
             android:textAlignment="center"
+            android:textColor="@color/white"
             android:textStyle="bold"
             android:translationY="50dp" />
 
@@ -105,10 +110,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="#D32F2F"
+            android:backgroundTint="@color/teal_200"
             android:text="@string/d12"
             android:textColor="@color/white"
-            android:translationY="60dp" />
+            android:translationY="60dp"
+            tools:ignore="TextContrastCheck" />
     </LinearLayout>
 
     <LinearLayout
@@ -130,6 +136,8 @@
             android:layout_weight="1"
             android:text="@string/_1"
             android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="14sp"
             android:textStyle="bold"
             android:translationY="50dp" />
 
@@ -149,9 +157,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="#D32F2F"
+            android:backgroundTint="@color/teal_200"
             android:text="@string/d20"
             android:textColor="@color/white"
-            android:translationY="60dp" />
+            android:translationY="60dp"
+            tools:ignore="TextContrastCheck" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
