@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Dado</string>
+    <string name="_1">1</string>
+    <string name="d6">D6</string>
+    <string name="d20">D20</string>
+    <string name="d12">D12</string>
+    <string name="dado">dado</string>
+    <string name="use_os_bot_es_abaixo_para_girar_os_dados_d6_d12_ou_d20">Use os botões abaixo para rolar os dados D6, D12 ou D20:</string>
+</resources>
