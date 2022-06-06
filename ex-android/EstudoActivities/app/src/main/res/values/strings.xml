@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Estudo Activities</string>
+    <string name="voltar">Voltar</string>
+    <string name="segunda_tela">Segunda Tela</string>
+    <string name="proxima_tela">Proxima Tela</string>
+    <string name="primeira_tela">Primeira Tela</string>
+</resources>
