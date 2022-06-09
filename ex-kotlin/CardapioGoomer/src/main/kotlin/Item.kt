@@ -1,0 +1,1 @@
+data class Item(val codigo: Int, var nome: String, var valor: Double) {}
