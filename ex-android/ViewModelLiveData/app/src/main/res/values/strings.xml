@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ViewModel e LiveData</string>
+    <string name="clique_no_bot_o">Clique no Bob Esponja:</string>
+    <string name="click">Click</string>
+</resources>
