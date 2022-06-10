@@ -5,4 +5,5 @@
     <string name="btnAdd">BotaoAdicionar</string>
     <string name="em_andamento">Em Andamento</string>
     <string name="deletar_tarefa">Deletar Tarefa</string>
+    <string name="salvar">Salvar</string>
 </resources>

@@ -77,6 +77,7 @@
             android:paddingVertical="10dp"
             android:text="@string/deletar_tarefa"
             android:textColor="@color/white"
+            app:icon="@drawable/ic_baseline_add_24"
             tools:ignore="TextContrastCheck" />
 
     </LinearLayout>

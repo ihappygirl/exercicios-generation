@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PrimeiroFragment" >
+    tools:context=".PrimeiroFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerTarefa"
@@ -21,11 +21,13 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
+        android:backgroundTint="#FF3D00"
         android:clickable="true"
+        android:contentDescription="@string/btnAdd"
         android:src="@drawable/ic_baseline_add_24"
+        android:tint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck"
-        android:contentDescription="@string/btnAdd" />
+        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

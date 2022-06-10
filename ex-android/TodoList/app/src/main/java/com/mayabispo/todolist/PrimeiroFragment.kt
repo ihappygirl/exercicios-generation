@@ -34,14 +34,15 @@ class PrimeiroFragment : Fragment() {
         // val view = inflater.inflate(R.layout.fragment_primeiro, container, false)
 
         // Criar a variável que vai guardar a lista de tarefas, instanciando a data class Tarefa
-        var listaTarefas = listOf(
+        // old: VAI SER UMA LISTA VINDA DA API
+        /*var listaTarefas = listOf(
             Tarefa("Limpar a estante", "Limpar a estante e reorganizar os trecos",
                 "Mayara", "2022-06-09", false, "Dia a dia"),
             Tarefa("Limpar a estante", "Limpar a estante e reorganizar os trecos",
                 "Mayara", "2022-06-09", false, "Dia a dia"),
             Tarefa("Limpar a estante", "Limpar a estante e reorganizar os trecos",
                 "Mayara", "2022-06-09", false, "Dia a dia")
-        )
+        )*/
 
         // Configurar o RecyclerView
         // criar uma variável para guardar um objeto do tipo TarefaAdapter
@@ -58,7 +59,7 @@ class PrimeiroFragment : Fragment() {
         bind.recyclerTarefa.setHasFixedSize(true)
 
         // atribuir a matriz lista de tarefas (listaTarefa) ao adapter
-        adapter.setLista(listaTarefas)
+        // adapter.setLista(listaTarefas)
 
         // Referenciar o floatingButton (aquele que adiciona uma nova tarefa) - old: FAREMOS PELO BIND
         // var floatingAdd = view.findViewById<FloatingActionButton>(R.id.floatingAdd)

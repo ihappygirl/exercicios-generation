@@ -3,7 +3,9 @@ package com.mayabispo.todolist
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     // Ciclos de vida de uma activity
@@ -85,6 +87,17 @@ class MainActivity : AppCompatActivity() {
     // ViewBinding - um object que contém todas as referencias por id dos meus itens de layout, pois seria horrivel
     // ter que criar variáveis e chamar o findViewById para referenciar cada uma delas.
     // Podemos habilitá-lo pelo build.gradle (Module) do projeto, setando viewBinding{ enabled=true }
+
+    // Retrofit - lida com requisições de APIs REST
+    // Para implementar APIs em nosso projeto, precisamos de:
+    // Implementar o Retrofit e as Coroutines em build.gradle
+    // Classe de Modelo  - contém os todos os atributos necessários do endpoint de tarefas ou de categorias
+    // Classe de Serviço - contém os metodos http (get, post, put e delete) para requests
+    // RetrofitInstance - contém a instancia do retrofit
+    // Repositório - pega os metodos da interface e junta com o RetrofitInstance
+    // e os transforma em métodos propriamente ditos
+    // ViewModel - para processar e persistir os dados retornados da API, também os prepara para
+    // mostrar na tela
 
 
 }

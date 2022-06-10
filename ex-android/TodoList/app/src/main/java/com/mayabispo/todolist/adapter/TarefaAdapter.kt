@@ -43,8 +43,8 @@ class TarefaAdapter : RecyclerView.Adapter<TarefaAdapter.TarefaViewHolder>(){
         holder.bind.txtData.text = tarefa.data
         holder.bind.txtDescricao.text = tarefa.descricao
         holder.bind.swtAndamento.isChecked = tarefa.status
-        holder.bind.txtCategoria.text = tarefa.categoria
-
+        // fazer com que o spinner de categorias receba a descrição da categoria
+        holder.bind.txtCategoria.text = tarefa.categoria.descricao
     }
 
     // getItemCount - diz quantas vezes o recyclerview vai ter que loopar
