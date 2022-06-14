@@ -27,7 +27,7 @@ class MainViewModel @Inject constructor(
     val myCategoriaResponse : LiveData<Response<List<Categoria>>> = _myCategoriaResponse
 
     init {
-        listarCategorias()
+        //listarCategorias()
     }
 
     fun listarCategorias(){
