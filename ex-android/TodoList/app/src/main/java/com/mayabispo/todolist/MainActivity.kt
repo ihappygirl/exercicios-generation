@@ -99,5 +99,22 @@ class MainActivity : AppCompatActivity() {
     // ViewModel - para processar e persistir os dados retornados da API, também os prepara para
     // mostrar na tela
 
+    // Coroutines - funções que rodam de forma assincrona, fazendo com que a UI
+    // seja atualizada enquanto ainda pegamos informações da API, por exemplo,
+    // evitando que a tela fique congelada por um tempo desnecessário.
+    // Para isso, declaramos a função como SUSPEND, que indica que essa função será executada
+    // em uma outra thread, sendo jogada para rodar no background.
+    // É formada por:
+    // Escopo (CoroutineScope) - onde nossa coroutine será criada. Há casos em que queremos que
+    // a coroutine seja executada com base em algum ciclo de vida, que pode ser:
+    //      GlobalScope - escopo global do projeto (acaba quando fecharmos o app)
+    //      ViewModelScope - escopo da ViewModel
+    //      LifecycleScope - escopo da Activity ou Fragment (UI)
+    // Job - nome unico da coroutine dentro do projeto
+    // Contexto (dispatchers) - que tipo de thread usaremos para nossas coroutines
+    //      Main - dados pequenos que podem ser processados pela UI
+    //      IO - para dados que vem de redes
+    //      Default - para operações que exigem mais do processador.
+
 
 }

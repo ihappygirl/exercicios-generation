@@ -12,7 +12,6 @@ import com.mayabispo.todolist.adapter.TarefaAdapter
 import com.mayabispo.todolist.databinding.FragmentPrimeiroBinding
 import com.mayabispo.todolist.model.Tarefa
 
-
 class PrimeiroFragment : Fragment() {
 
     // instanciar o viewBinding
@@ -74,6 +73,5 @@ class PrimeiroFragment : Fragment() {
         // retornar o viewBinding, pois ele que trata da view agora
         return bind.root
     }
-
 
 }

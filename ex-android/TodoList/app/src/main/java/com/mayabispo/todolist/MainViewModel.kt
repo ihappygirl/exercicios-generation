@@ -8,9 +8,11 @@ import androidx.lifecycle.viewModelScope
 import com.mayabispo.todolist.api.Repository
 import com.mayabispo.todolist.model.Categoria
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import java.lang.Exception
+import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
@@ -26,13 +28,12 @@ class MainViewModel @Inject constructor(
     // não podemos ter acesso a lista mutável diretamente para mudar seus valores
     val myCategoriaResponse : LiveData<Response<List<Categoria>>> = _myCategoriaResponse
 
-    init {
-        //listarCategorias()
-    }
+    // guardar a data selecionada
+    val dataSelecionada = MutableLiveData<LocalDate>()
 
     fun listarCategorias(){
         // criar uma coroutine
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             // guardamos a resposta de categoria num try catch caso o usuario não tenha acesso a internet,
             // então ele vai tentar fazer a requisição e se não conseguir criamos um log de erro de requisição
             // + a msg

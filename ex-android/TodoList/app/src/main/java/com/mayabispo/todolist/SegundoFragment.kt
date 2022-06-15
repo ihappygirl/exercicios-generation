@@ -12,10 +12,13 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.mayabispo.todolist.databinding.FragmentPrimeiroBinding
 import com.mayabispo.todolist.databinding.FragmentSegundoBinding
+import com.mayabispo.todolist.fragment.DatePickerFragment
+import com.mayabispo.todolist.fragment.TimerPickerListener
 import com.mayabispo.todolist.model.Categoria
+import java.time.LocalDate
 
 
-class SegundoFragment : Fragment() {
+class SegundoFragment : Fragment(), TimerPickerListener {
 
     // instanciar o viewBinding
     private lateinit var bind: FragmentSegundoBinding
@@ -32,6 +35,9 @@ class SegundoFragment : Fragment() {
 
         mainViewModel.listarCategorias()
 
+        // seleciona a data atual
+        mainViewModel.dataSelecionada.value = LocalDate.now()
+
         // observamos a var myCategoriaResponse e criamos um logcat que contém o
         // corpo da requisição (a resposta)
         mainViewModel.myCategoriaResponse.observe(viewLifecycleOwner){
@@ -39,6 +45,11 @@ class SegundoFragment : Fragment() {
             // chamar spinnerCategoria passando o corpo da requisição como parâmetro (a lista de
             // categorias)
             spinnerCategoria(response.body())
+        }
+
+        // observamos a data selecionada caso mude
+        mainViewModel.dataSelecionada.observe(viewLifecycleOwner){
+            selectedDate -> bind.editData.setText(selectedDate.toString())
         }
 
         // Armazenamos o inflate do layout em uma variável, pois precisamos usá-lo para
@@ -55,6 +66,11 @@ class SegundoFragment : Fragment() {
             findNavController().navigate(R.id.action_segundoFragment_to_primeiroFragment)
         }
 
+        // abrir o calendário ao clicar em editData
+        bind.editData.setOnClickListener {
+            DatePickerFragment(this).show(parentFragmentManager, "Date Picker")
+        }
+
         // retornar o viewBinding, pois ele que trata da view agora
         return bind.root
     }
@@ -69,6 +85,10 @@ class SegundoFragment : Fragment() {
                     listaCategoria
                 )
         }
+    }
+    // quando o usuário selecionar uma data, pegaremos ela pra jogar na MutableLiveData dataSelecionada
+    override fun onDateSelected(data: LocalDate) {
+        mainViewModel.dataSelecionada.value = data
     }
 
 }
