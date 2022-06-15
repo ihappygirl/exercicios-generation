@@ -1,10 +1,12 @@
 package com.mayabispo.todolist
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -17,6 +19,9 @@ class PrimeiroFragment : Fragment() {
     // instanciar o viewBinding
     private lateinit var bind: FragmentPrimeiroBinding
 
+    // criar uma instancia de mainViewModel que sobreviva ao ciclo de todas as activities
+    private val mainViewModel: MainViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,6 +30,9 @@ class PrimeiroFragment : Fragment() {
         // layoutInflater - passar onde é que que ele vai inflar o layout (no caso o container onde
         // colocaremos os fragments)
         bind = FragmentPrimeiroBinding.inflate(layoutInflater, container, false)
+
+        // chamar a listarTarefas()
+        mainViewModel.listarTarefas()
 
         // Armazenamos o inflate do layout em uma variável, pois precisamos usá-lo para
         // criar as interações dos botões, e ai depois retornamos o inflate junto com elas.
@@ -67,6 +75,15 @@ class PrimeiroFragment : Fragment() {
             // buscar onde tá o controller de navegação (no caso, o nav_graph que tá cuidando disso)
             // e setar para onde eu quero navegar (SegundoFragment)
             findNavController().navigate(R.id.action_primeiroFragment_to_segundoFragment)
+
+        }
+
+        mainViewModel.myTarefaResponse.observe(viewLifecycleOwner){
+            // checamos se o corpo da resposta é nulo, e caso não seja, chamamos
+            // a função setLista do adapter, que receberá esse corpo (a lista de tarefas)
+            response -> if(response.body() != null) {
+                adapter.setLista(response.body()!!)
+            }
 
         }
 

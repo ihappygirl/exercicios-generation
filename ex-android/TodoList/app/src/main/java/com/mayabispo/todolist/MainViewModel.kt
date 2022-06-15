@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mayabispo.todolist.api.Repository
 import com.mayabispo.todolist.model.Categoria
+import com.mayabispo.todolist.model.Tarefa
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -24,16 +25,23 @@ class MainViewModel @Inject constructor(
     // guarda o retorno da fun listarCategorias como um dado observável e uma lista mutável
     private var _myCategoriaResponse = MutableLiveData<Response<List<Categoria>>>()
 
+    // guarda o retorno da fun listarTarefas como um dado observável e uma lista mutável
+    private var _myTarefaResponse = MutableLiveData<Response<List<Tarefa>>>()
+
     // recebe a lista mutável anterior, como uma lista imutável (somente leitura), pois
     // não podemos ter acesso a lista mutável diretamente para mudar seus valores
     val myCategoriaResponse : LiveData<Response<List<Categoria>>> = _myCategoriaResponse
+
+    // lista imutavel de tarefas cadastradas
+    val myTarefaResponse : LiveData<Response<List<Tarefa>>> = _myTarefaResponse
+
 
     // guardar a data selecionada
     val dataSelecionada = MutableLiveData<LocalDate>()
 
     fun listarCategorias(){
         // criar uma coroutine
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             // guardamos a resposta de categoria num try catch caso o usuario não tenha acesso a internet,
             // então ele vai tentar fazer a requisição e se não conseguir criamos um log de erro de requisição
             // + a msg
@@ -43,8 +51,39 @@ class MainViewModel @Inject constructor(
                 // atribuimos essa resposta ao mutableLiveData de _myCategoriaResponse
                 _myCategoriaResponse.value = response
             } catch (e:Exception){
-                Log.d("ErroRequisição", e.message.toString())
+                Log.d("Erro", e.message.toString())
             }
         }
     }
+
+    fun addTarefa(tarefa: Tarefa){
+        viewModelScope.launch {
+            try{
+                repository.addTarefa(tarefa)
+                listarTarefas()
+            } catch (e:Exception){
+                Log.d("Erro", e.message.toString())
+            }
+        }
+    }
+
+    fun listarTarefas(){
+        viewModelScope.launch {
+            try{
+                // a resposta da requisição get de listarTarefas
+                val response = repository.listarTarefas()
+                // atribuimos essa resposta ao mutableLiveData de _myTarefaResponse
+                _myTarefaResponse.value = response
+
+            } catch (e: Exception){
+                Log.d("Erro", e.message.toString())
+            }
+        }
+
+
+
+
+    }
+
+
 }

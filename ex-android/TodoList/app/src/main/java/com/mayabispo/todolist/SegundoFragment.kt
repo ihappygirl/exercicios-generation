@@ -1,13 +1,13 @@
 package com.mayabispo.todolist
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Button
+import android.widget.*
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.mayabispo.todolist.databinding.FragmentPrimeiroBinding
@@ -15,6 +15,7 @@ import com.mayabispo.todolist.databinding.FragmentSegundoBinding
 import com.mayabispo.todolist.fragment.DatePickerFragment
 import com.mayabispo.todolist.fragment.TimerPickerListener
 import com.mayabispo.todolist.model.Categoria
+import com.mayabispo.todolist.model.Tarefa
 import java.time.LocalDate
 
 
@@ -25,6 +26,8 @@ class SegundoFragment : Fragment(), TimerPickerListener {
 
     // criar uma instancia de mainViewModel que sobreviva ao ciclo de todas as activities
     private val mainViewModel: MainViewModel by activityViewModels()
+
+    private var categoriaSelecionada = 0L
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,9 +64,7 @@ class SegundoFragment : Fragment(), TimerPickerListener {
         //val btnSalvar = view.findViewById<Button>(R.id.buttonSalvar)
 
         bind.buttonSalvar.setOnClickListener {
-            // buscar onde tá o controller de navegação (no caso, o nav_graph que tá cuidando disso)
-            // e setar para onde eu quero navegar (PrimeiroFragment)
-            findNavController().navigate(R.id.action_segundoFragment_to_primeiroFragment)
+            adicionarAoBanco()
         }
 
         // abrir o calendário ao clicar em editData
@@ -76,7 +77,7 @@ class SegundoFragment : Fragment(), TimerPickerListener {
     }
 
     // função que usa o array adapter para inserir o array de categorias no spinner
-    fun spinnerCategoria(listaCategoria: List<Categoria>?){
+    private fun spinnerCategoria(listaCategoria: List<Categoria>?){
         if(listaCategoria != null){
             bind.spinnerCategoria.adapter =
                 ArrayAdapter(
@@ -84,8 +85,70 @@ class SegundoFragment : Fragment(), TimerPickerListener {
                     androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
                     listaCategoria
                 )
+
+            // quando o usuario selecionar uma categoria, armazenamos o id dela
+            bind.spinnerCategoria.onItemSelectedListener =
+                object : AdapterView.OnItemSelectedListener{
+                    override fun onItemSelected(
+                        parent: AdapterView<*>?,
+                        view: View?,
+                        position: Int,
+                        id: Long
+                    ) {
+                        // pegar o item selecionado como Categoria
+                        val selecionado = bind.spinnerCategoria.selectedItem as Categoria
+                        // passar o id da categoria do item selecionado
+                        categoriaSelecionada = selecionado.id
+
+                    }
+
+                    override fun onNothingSelected(parent: AdapterView<*>?) {
+                        TODO("Not yet implemented")
+                    }
+
+                }
         }
     }
+
+    private fun validarCampos(
+        nome:String, descricao: String, responsavel:String
+    ) : Boolean{
+        return !(
+                (nome == "" || nome.length < 3 || nome.length > 20) ||
+                        (descricao == "" || descricao.length < 5 || descricao.length > 200) ||
+                        (responsavel == "" || responsavel.length < 3 || responsavel.length > 20)
+                )
+    }
+
+    private fun adicionarAoBanco(){
+        // pegamos os dados digitados
+        val nome = bind.editNome.text.toString()
+        val desc = bind.editDescricao.text.toString()
+        val resp = bind.editResponsavel.text.toString()
+        val data = bind.editData.text.toString()
+        val status = bind.switchAtivoCard.isChecked
+        val categoria = Categoria(categoriaSelecionada, null, null)
+
+        // validamos os campos nome, desc, responsavel
+        if (validarCampos(nome, desc, resp)){
+            // criamos uma instancia de tarefa passando os dados digitados
+            val tarefa = Tarefa(0, nome, desc, resp, data, status, categoria)
+
+            // passamos essa instancia como parâmetro da função POST do endpoint de tarefa
+            mainViewModel.addTarefa(tarefa)
+
+            // mostramos um toast falando que deu bom
+            Toast.makeText(context, "Tarefa adicionada com sucesso!", Toast.LENGTH_SHORT).show()
+
+            // Retornamos para a tela de listagem de tarefas
+            // buscar onde tá o controller de navegação (no caso, o nav_graph que tá cuidando disso)
+            // e setar para onde eu quero navegar (PrimeiroFragment)
+            findNavController().navigate(R.id.action_segundoFragment_to_primeiroFragment)
+        } else{
+            Toast.makeText(context, "Verifique se os dados estão corretos!", Toast.LENGTH_SHORT).show()
+        }
+    }
+
     // quando o usuário selecionar uma data, pegaremos ela pra jogar na MutableLiveData dataSelecionada
     override fun onDateSelected(data: LocalDate) {
         mainViewModel.dataSelecionada.value = data
