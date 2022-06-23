@@ -11,10 +11,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.mayabispo.todolist.adapter.TarefaAdapter
+import com.mayabispo.todolist.adapter.TaskClickListener
 import com.mayabispo.todolist.databinding.FragmentPrimeiroBinding
 import com.mayabispo.todolist.model.Tarefa
 
-class PrimeiroFragment : Fragment() {
+class PrimeiroFragment : Fragment(), TaskClickListener {
 
     // instanciar o viewBinding
     private lateinit var bind: FragmentPrimeiroBinding
@@ -53,7 +54,7 @@ class PrimeiroFragment : Fragment() {
 
         // Configurar o RecyclerView
         // criar uma variável para guardar um objeto do tipo TarefaAdapter
-        val adapter = TarefaAdapter()
+        val adapter = TarefaAdapter(this, mainViewModel)
 
         // definir quem vai ser o layoutManager de recyclerTarefa, isto é, definir qual vai ser o
         // tipo de container que conterá todos os cards de tarefas
@@ -72,6 +73,10 @@ class PrimeiroFragment : Fragment() {
         // var floatingAdd = view.findViewById<FloatingActionButton>(R.id.floatingAdd)
 
         bind.floatingAdd.setOnClickListener{
+            // setar para que não exista uma tarefa selecionada quando quisermos criar uma nova tarefa
+            // (pra não chamar os dados desnecessariamente)
+            mainViewModel.tarefaSelecionada = null
+
             // buscar onde tá o controller de navegação (no caso, o nav_graph que tá cuidando disso)
             // e setar para onde eu quero navegar (SegundoFragment)
             findNavController().navigate(R.id.action_primeiroFragment_to_segundoFragment)
@@ -89,6 +94,14 @@ class PrimeiroFragment : Fragment() {
 
         // retornar o viewBinding, pois ele que trata da view agora
         return bind.root
+    }
+
+    // função para ver qual task eu quero editar
+    override fun onTaskClickListener(tarefa: Tarefa) {
+        // tarefaSelecionada recebe uma tarefa específica
+        mainViewModel.tarefaSelecionada = tarefa
+        // navegar para a tela de criar uma tarefa
+        findNavController().navigate(R.id.action_primeiroFragment_to_segundoFragment)
     }
 
 }

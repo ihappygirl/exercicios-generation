@@ -6,6 +6,7 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 
 interface ApiService {
 
@@ -23,8 +24,16 @@ interface ApiService {
         @Body tarefa: Tarefa
     ) : Response<Tarefa>
 
+    // qual o endpoint?
     @GET("tarefa")
     suspend fun listarTarefas() : Response<List<Tarefa>>
+
+    // qual o endpoint?
+    @PUT("tarefa")
+    suspend fun editTarefa(
+        // passar o corpo da requisição (no caso, os itens de Tarefa)
+        @Body tarefa: Tarefa
+    ) : Response<Tarefa>
 
 
 

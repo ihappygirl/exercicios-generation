@@ -3,11 +3,15 @@ package com.mayabispo.todolist.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.mayabispo.todolist.MainViewModel
 import com.mayabispo.todolist.databinding.CardLayoutBinding
 import com.mayabispo.todolist.model.Tarefa
 
 // para herdar o adapter de RecyclerView, precisamos referenciar um ViewHolder primeiro
-class TarefaAdapter : RecyclerView.Adapter<TarefaAdapter.TarefaViewHolder>(){
+class TarefaAdapter(
+    val taskClickListener: TaskClickListener,
+    val mainViewModel: MainViewModel
+) : RecyclerView.Adapter<TarefaAdapter.TarefaViewHolder>(){
 
     // a principio usamos uma lista de tarefas vazia
     private var listaTarefa = emptyList<Tarefa>()
@@ -45,6 +49,21 @@ class TarefaAdapter : RecyclerView.Adapter<TarefaAdapter.TarefaViewHolder>(){
         holder.bind.swtAndamento.isChecked = tarefa.status
         // fazer com que o spinner de categorias receba a descrição da categoria
         holder.bind.txtCategoria.text = tarefa.categoria.descricao
+
+        // dizer que quando selecionarmos um item da lista,
+        // o metodo de onclick vai chamar o TaskClickListener, que recebe o index da tarefa que cliquei
+        holder.itemView.setOnClickListener {
+            taskClickListener.onTaskClickListener(tarefa)
+        }
+
+        // mudar o switch da tarefa pelo recyclerView
+        holder.bind.swtAndamento.setOnCheckedChangeListener { buttonView, ativo ->
+            // mudar localmente na tarefa
+            tarefa.status = ativo
+
+            // mudar no banco de dados
+            mainViewModel.editTarefa(tarefa)
+        }
     }
 
     // getItemCount - diz quantas vezes o recyclerview vai ter que loopar
@@ -57,8 +76,9 @@ class TarefaAdapter : RecyclerView.Adapter<TarefaAdapter.TarefaViewHolder>(){
     // parâmetro e atribui ela a listaTarefa
     fun setLista(lista: List<Tarefa>){
 
-        //matriz recebe mais um array
-        listaTarefa = lista
+        //matriz recebe mais um array (mais uma tarefa criada) e ordena a lista inteira por id
+        // de forma decrescente (os ultimos itens criados são mostrados em cima)
+        listaTarefa = lista.sortedByDescending { it.id }
 
         // avisar o adapter que a listaTarefa atualizou
         notifyDataSetChanged()

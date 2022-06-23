@@ -22,6 +22,9 @@ class MainViewModel @Inject constructor(
     private val repository: Repository
     ) : ViewModel() {
 
+    // ver se existe uma tarefa selecionada
+    var tarefaSelecionada : Tarefa? = null
+
     // guarda o retorno da fun listarCategorias como um dado observável e uma lista mutável
     private var _myCategoriaResponse = MutableLiveData<Response<List<Categoria>>>()
 
@@ -79,11 +82,17 @@ class MainViewModel @Inject constructor(
                 Log.d("Erro", e.message.toString())
             }
         }
-
-
-
-
     }
 
+    fun editTarefa(tarefa: Tarefa){
+        viewModelScope.launch {
+            try {
+                repository.editTarefa(tarefa)
+                listarTarefas()
+            } catch (e: Exception){
+                Log.d("Erro", e.message.toString())
+            }
+        }
+    }
 
 }

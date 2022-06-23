@@ -29,12 +29,17 @@ class SegundoFragment : Fragment(), TimerPickerListener {
 
     private var categoriaSelecionada = 0L
 
+    // tem uma tarefa selecionada?
+    private var tarefaSelecionada : Tarefa? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
         bind = FragmentSegundoBinding.inflate(layoutInflater, container, false)
+
+        carregarDados()
 
         mainViewModel.listarCategorias()
 
@@ -131,21 +136,56 @@ class SegundoFragment : Fragment(), TimerPickerListener {
 
         // validamos os campos nome, desc, responsavel
         if (validarCampos(nome, desc, resp)){
-            // criamos uma instancia de tarefa passando os dados digitados
-            val tarefa = Tarefa(0, nome, desc, resp, data, status, categoria)
 
-            // passamos essa instancia como parâmetro da função POST do endpoint de tarefa
-            mainViewModel.addTarefa(tarefa)
+            // variavel que guarda a msg mostrada no toast
+            val salvar : String
+
+            // verficar se a tarefa existe e caso sim, a gente faz a requisição PUT (metodo editTarefa)
+            // caso não exista, a gente faz a requisição POST (metodo addTarefa)
+            if(tarefaSelecionada != null) {
+                salvar = "Tarefa atualizada com sucesso!"
+
+                // criamos uma instancia de tarefa passando os novos dados digitados, menos o id
+                // que pegamos da tarefa já existente
+                val tarefa = Tarefa(tarefaSelecionada?.id!!, nome, desc, resp, data, status, categoria)
+
+                // passamos essa instancia como parâmetro da requisição PUT do endpoint de tarefa
+                mainViewModel.editTarefa(tarefa)
+            } else {
+                salvar = "Tarefa adicionada com sucesso!"
+
+                // criamos uma instancia de tarefa passando os dados digitados
+                val tarefa = Tarefa(0, nome, desc, resp, data, status, categoria)
+
+                // passamos essa instancia como parâmetro da requisição POST do endpoint de tarefa
+                mainViewModel.addTarefa(tarefa)
+            }
 
             // mostramos um toast falando que deu bom
-            Toast.makeText(context, "Tarefa adicionada com sucesso!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, salvar, Toast.LENGTH_SHORT).show()
 
             // Retornamos para a tela de listagem de tarefas
             // buscar onde tá o controller de navegação (no caso, o nav_graph que tá cuidando disso)
             // e setar para onde eu quero navegar (PrimeiroFragment)
             findNavController().navigate(R.id.action_segundoFragment_to_primeiroFragment)
+
+
         } else{
             Toast.makeText(context, "Verifique se os dados estão corretos!", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    // ver se tem uma tarefa selecionada e carregar os dados dela nos campos
+    private fun carregarDados(){
+        tarefaSelecionada = mainViewModel.tarefaSelecionada
+
+        if(tarefaSelecionada != null){
+            // atribuir os dados da tarefa selecionada aos campos na tela
+            bind.editNome.setText(tarefaSelecionada?.nome)
+            bind.editDescricao.setText(tarefaSelecionada?.descricao)
+            bind.editResponsavel.setText(tarefaSelecionada?.responsavel)
+            bind.editData.setText(tarefaSelecionada?.data)
+            bind.switchAtivoCard.isChecked =  tarefaSelecionada?.status!!
         }
     }
 
