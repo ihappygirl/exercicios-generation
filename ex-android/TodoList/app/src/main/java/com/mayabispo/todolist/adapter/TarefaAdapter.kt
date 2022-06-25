@@ -1,5 +1,7 @@
 package com.mayabispo.todolist.adapter
 
+import android.app.AlertDialog
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -10,7 +12,8 @@ import com.mayabispo.todolist.model.Tarefa
 // para herdar o adapter de RecyclerView, precisamos referenciar um ViewHolder primeiro
 class TarefaAdapter(
     val taskClickListener: TaskClickListener,
-    val mainViewModel: MainViewModel
+    val mainViewModel: MainViewModel,
+    val context: Context
 ) : RecyclerView.Adapter<TarefaAdapter.TarefaViewHolder>(){
 
     // a principio usamos uma lista de tarefas vazia
@@ -64,6 +67,11 @@ class TarefaAdapter(
             // mudar no banco de dados
             mainViewModel.editTarefa(tarefa)
         }
+
+        // deletar uma tarefa
+        holder.bind.btnDeletar.setOnClickListener {
+            mostrarDialog(tarefa.id)
+        }
     }
 
     // getItemCount - diz quantas vezes o recyclerview vai ter que loopar
@@ -84,4 +92,18 @@ class TarefaAdapter(
         notifyDataSetChanged()
     }
 
+    // mostrar modalDialog para confirmar o delete da tarefa
+    private fun mostrarDialog(id: Long){
+        AlertDialog.Builder(context)
+            .setTitle("Excluir Tarefa")
+            .setMessage("Deseja excluir a tarefa?")
+            .setPositiveButton("Sim") {
+                // caso queira deletar a tarefa, chamar a função deletarTarefa()
+                    _, _ -> mainViewModel.deletarTarefa(id)
+            }
+            .setNegativeButton("Não"){
+                // caso clicar em não, não fará nada
+                _,_ ->
+            }.show()
+    }
 }

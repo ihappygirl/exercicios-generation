@@ -54,7 +54,7 @@ class PrimeiroFragment : Fragment(), TaskClickListener {
 
         // Configurar o RecyclerView
         // criar uma variável para guardar um objeto do tipo TarefaAdapter
-        val adapter = TarefaAdapter(this, mainViewModel)
+        val adapter = TarefaAdapter(this, mainViewModel, requireContext())
 
         // definir quem vai ser o layoutManager de recyclerTarefa, isto é, definir qual vai ser o
         // tipo de container que conterá todos os cards de tarefas
